@@ -4516,3 +4516,10 @@ java.net.URISyntaxException: Illegal character in path at index 23: file:/home/n
 2022-01-10 14:11:52,280 [Worker-30: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2022-01-10 14:11:52,280 [Worker-30: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
 2022-01-10 14:11:52,280 [Worker-30: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/ngonyoku/DEV STUFF/Projects/Spring Boot Projects/ShopmeEcommerce/ShopmeProject/ShopmeWebParent/ShopmeBackEnd/src/test/resources
+2022-01-11 06:37:51,979 [Worker-45: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-01-11 06:37:52,013 [Worker-45: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-01-11 06:37:52,014 [Worker-45: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2022-01-11 06:37:52,014 [Worker-45: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2022-01-11 06:37:52,017 [Worker-45: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2022-01-11 06:37:52,017 [Worker-45: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2022-01-11 06:37:52,017 [Worker-45: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/ngonyoku/DEV STUFF/Projects/Spring Boot Projects/ShopmeEcommerce/ShopmeProject/ShopmeWebParent/ShopmeBackEnd/src/test/resources

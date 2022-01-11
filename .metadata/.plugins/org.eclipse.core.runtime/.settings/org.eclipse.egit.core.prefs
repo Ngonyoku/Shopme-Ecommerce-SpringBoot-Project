@@ -1,2 +1,6 @@
+GitRepositoriesView.GitDirectories=
+GitRepositoriesView.GitDirectories.relative=
+RepositorySearchDialogDeepSearch=false
+RepositorySearchDialogSearchPath=/home/ngonyoku/DEV STUFF/Projects/Spring Boot Projects/ShopmeEcommerce
 core_autoIgnoreDerivedResources=false
 eclipse.preferences.version=1
