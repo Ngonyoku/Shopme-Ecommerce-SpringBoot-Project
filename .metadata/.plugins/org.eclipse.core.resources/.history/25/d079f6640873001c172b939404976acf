@@ -1,0 +1,31 @@
+package com.shopme.admin.user;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.test.annotation.Rollback;
+
+import com.shopme.common.entity.Role;
+import com.shopme.common.entity.User;
+
+@DataJpaTest
+@AutoConfigureTestDatabase(replace = Replace.NONE) //Runs the tests on the real database
+@Rollback(false)
+public class UserRepositoryTests {
+	@Autowired
+	private UserRepository repository;
+	
+	@Autowired
+	private TestEntityManager entityManager;
+	
+	@Test
+	public void testCreateUser() {
+		Role roleAdmin = entityManager.find(Role.class, 1);  //Pulls a specific row from the database
+		User userMorio= new User("morio@example.com", "123456789", "Morio", "Anzenza");
+		userMorio.addRole(null);
+		
+	}
+}
