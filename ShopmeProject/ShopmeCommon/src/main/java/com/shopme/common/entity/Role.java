@@ -40,7 +40,6 @@ public class Role {
 	}
 	
 	public Role(Integer id) {
-		super();
 		this.id = id;
 	}
 
@@ -74,7 +73,7 @@ public class Role {
 
 	@Override
 	public String toString() {
-		return "Role [name=" + name + "]";
+		return this.name;
 	}
 
 	@Override
