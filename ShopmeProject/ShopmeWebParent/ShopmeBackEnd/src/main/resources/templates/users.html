@@ -4,7 +4,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 
-	<title>Insert title here</title>
+	<title>Users</title>
 	
 	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
 	<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
@@ -23,7 +23,7 @@
 		  </button>
 			<div class="collapse navbar-collapse" id="topNavBar">
 				<ul class="navbar-nav">
-					<li class="nav-item">
+					<li class="nav-item active">
 						<a class="nav-link" th:href="@{/users}">users</a>
 					</li>
 					
@@ -75,10 +75,15 @@
 		</nav>
 	</div>
 
+	<!-- Body Content -->
 	<div class="container-fluid">
 		<div>
 			<h1>Manage Users</h1>
+			<a th:href="@{/users/new}">Create New User</a>
 		</div>
+		
+		<!-- Message -->
+		<div th:if="${message != null}" class="alert alert-success text-center">[[${message}]]</div>
 		
 		<div>
 			<table class="table table-striped table-hover table-responsive-xl">
@@ -113,6 +118,8 @@
 		</div>
 	</div>
 	
+	
+	<!-- Footer -->
 	<div class="text-center">
 		<p>Shopme Control Panel - Copyright &copy; Shopme </p>
 	</div>
