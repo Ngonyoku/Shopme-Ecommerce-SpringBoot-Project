@@ -87,4 +87,12 @@ public class UserRepositoryTests {
 		Integer userId = 1;
 		repository.deleteById(userId);
 	}
+	
+	@Test
+	public void testGetUserByEmail() {
+		String email = "dc65963HD@xys.cmm"; //No such email exists in database.
+		User user = repository.getUserByEmail(email);
+		
+		assertThat(user).isNotNull(); //The test MUST fail since there is no user with the above email
+	}
 }
