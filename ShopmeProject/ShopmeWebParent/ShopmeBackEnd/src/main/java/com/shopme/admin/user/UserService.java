@@ -43,7 +43,18 @@ public class UserService {
 	public void encodePasword(User user) {
 		String encodedPassword = passwordEncoder.encode(user.getPassword());
 		//Updated the User password with the new encoded password
-		user.setPassword(encodedPassword);
-		
+		user.setPassword(encodedPassword);	
+	}
+	
+	/*
+	 * Confirms that the email passed DOES indeed exist in the database
+	 * */
+	public boolean isEmailUnique(String email) {
+		User userByEmail = userRepository.getUserByEmail(email);
+		return userByEmail == null; //Check if the object returned is NULL 
+		/*
+		 * True - Email Exists
+		 * False - Email Does NOT exist in DataSource
+		 * */
 	}
 }
