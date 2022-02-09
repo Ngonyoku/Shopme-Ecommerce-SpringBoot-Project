@@ -1,9 +1,0 @@
-package com.shopme.admin.user;
-
-import org.springframework.web.bind.annotation.RestController;
-
-@RestController
-public class UserRestController {
-	
-	private UserService
-}
