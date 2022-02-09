@@ -1,8 +1,0 @@
-package com.shopme.admin.user;
-
-import java.util.List;
-
-public class UserService {
-	
-	@Autowired
-}
