@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+	<title>Users</title>
+	
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/fontawesome/all.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+	
+	<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</head>
+<body>
+	<!--Navigation Bar-->
+	<div>
+		<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+			<a class="navbar-brand" th:href="@{/}">
+				<img alt="" th:src="@{/images/ShopmeAdminSmall.png}">
+			</a>
+		  <!-- Toggler Button -->
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#topNavBar">
+		    <span class="navbar-toggler-icon"></span>
+		  </button>
+			<div class="collapse navbar-collapse" id="topNavBar">
+				<ul class="navbar-nav">
+					<li class="nav-item active">
+						<a class="nav-link" th:href="@{/users}">users</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" th:href="@{/categories}">categories</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" th:href="@{/brands}">brands</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" th:href="@{/products}">products</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" th:href="@{/customers}">customers</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" th:href="@{/shipping}">shipping</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" th:href="@{/orders}">orders</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" th:href="@{/report}">sales report</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" th:href="@{/articles}">articles</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" th:href="@{/menus}">Menus</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link" th:href="@{/settings}">settings</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+	</div>
+
+	<!-- Body Content -->
+	<div class="container-fluid">
+		<div>
+			<h1>Manage Users</h1>
+			<a th:href="@{/users/new}">Create New User</a>
+		</div>
+		
+		<!-- Message -->
+		<div th:if="${message != null}" class="alert alert-success text-center">[[${message}]]</div>
+		
+		<div>
+			<table class="table table-striped table-hover table-responsive-xl">
+				<thead class="thead-dark">
+					<tr>
+						<th>User ID</th>
+						<th>Photos</th>
+						<th>Email</th>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>Roles</th>
+						<th>Enabled</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<!-- Loop through the list -->
+					<tr th:each="user : ${listUsers}">
+						<td>[[${user.id}]]</td>
+						<td><span class="fas fa-portrait fa-3x icon-silver"></span></td> <!-- TODO:// Update Photos section -->
+						<td>[[${user.email}]]</td>
+						<td>[[${user.firstName}]]</td>
+						<td>[[${user.lastName}]]</td>
+						<td>[[${user.roles}]]</td>
+						<td>
+							<a th:if="${user.enabled == true}" class="fas fa-check-circle fa-2x icon-green" href=""></a>
+							<a th:if="${user.enabled != true}" class="fas fa-check-circle fa-2x icon-dark" href=""></a>
+						</td>
+						<td>
+							<a class="fas fa-edit fa-2x icon-green"
+								th:href="@{'/users/edit/' + ${user.id}}" 
+								title="Edit User"
+							></a>
+							&nbsp;
+							<a class="fas fa-trash-alt fa-2x icon-red" 
+								th:href=""></a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	
+	
+	<!-- Footer -->
+	<div class="text-center">
+		<p>Shopme Control Panel - Copyright &copy; Shopme </p>
+	</div>
+</body>
+</html>
