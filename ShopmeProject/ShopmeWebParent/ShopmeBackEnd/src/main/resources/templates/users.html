@@ -43,10 +43,6 @@
 					</li>
 					
 					<li class="nav-item">
-						<a class="nav-link" th:href="@{/users}">Users</a>
-					</li>
-					
-					<li class="nav-item">
 						<a class="nav-link" th:href="@{/customers}">customers</a>
 					</li>
 					
@@ -111,9 +107,18 @@
 						<td>[[${user.firstName}]]</td>
 						<td>[[${user.lastName}]]</td>
 						<td>[[${user.roles}]]</td>
+						<!-- Enabled Status -->
 						<td>
-							<a th:if="${user.enabled == true}" class="fas fa-check-circle fa-2x icon-green" href=""></a>
-							<a th:if="${user.enabled != true}" class="fas fa-check-circle fa-2x icon-dark" href=""></a>
+							<a th:if="${user.enabled == true}" 
+								class="fas fa-check-circle fa-2x icon-green" 
+								th:href="@{'/users/' + ${user.id} + '/enabled/false'}"
+								title="Disable User">
+							</a>
+							<a th:if="${user.enabled == false}" 
+								class="fas fa-check-circle fa-2x icon-dark" 
+								th:href="@{'/users/' + ${user.id} + '/enabled/true'}"
+								title="Enable User">
+							</a>
 						</td>
 						<td>
 							<a class="fas fa-edit fa-2x icon-green"
@@ -121,7 +126,10 @@
 								title="Edit User"
 							></a>
 							&nbsp;
-							<a class="fas fa-trash-alt fa-2x icon-red" href=""></a>
+							<a class="fas fa-trash-alt fa-2x icon-red link-delete" 
+								th:href="@{'/users/delete/' + ${user.id}}"
+								title="Delete this user"
+							></a>
 						</td>
 					</tr>
 				</tbody>
@@ -134,5 +142,14 @@
 	<div class="text-center">
 		<p>Shopme Control Panel - Copyright &copy; Shopme </p>
 	</div>
+	
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$(".link-delete").on("click", function(e){
+				e.preventDefault();
+				alert($(this).attr("href"));
+			});
+		});
+	</script>
 </body>
 </html>

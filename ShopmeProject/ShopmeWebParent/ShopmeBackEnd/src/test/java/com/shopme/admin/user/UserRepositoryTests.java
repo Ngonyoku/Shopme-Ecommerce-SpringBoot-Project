@@ -18,7 +18,7 @@ import com.shopme.common.entity.User;
 @Rollback(false)
 public class UserRepositoryTests {
 	@Autowired
-	private UserRepository repository;
+	private UserRepository repo;
 	
 	@Autowired
 	private TestEntityManager entityManager;
@@ -30,7 +30,7 @@ public class UserRepositoryTests {
 		User userMorio= new User("morio@example.com", "123456789", "Morio", "Anzenza");
 		userMorio.addRole(roleAdmin);
 		
-		User savedUser = repository.save(userMorio);
+		User savedUser = repo.save(userMorio);
 		
 		assertThat(savedUser.getId()).isGreaterThan(0);
 	}
@@ -43,56 +43,76 @@ public class UserRepositoryTests {
 		userCate.addRole(roleAssistant);
 		userCate.addRole(roleEditor);
 		
-		User savedUser = repository.save(userCate);
+		User savedUser = repo.save(userCate);
 		
 		assertThat(savedUser.getId()).isGreaterThan(0);
 	}
 	
 	@Test
 	public void testListAllUsers() {
-		Iterable<User> listUsers = repository.findAll();
+		Iterable<User> listUsers = repo.findAll();
 		listUsers.forEach(user -> System.out.println(user));
 	}
 	
 	@Test
 	public void testGetUserById() {
-		User userMorio = repository.findById(1).get();
+		User userMorio = repo.findById(1).get();
 		System.out.println(userMorio);
 		assertThat(userMorio).isNotNull();
 	}
 	
 	@Test
 	public void testUpdateUserDetails() {
-		User userMorio = repository.findById(1).get();
+		User userMorio = repo.findById(1).get();
 		userMorio.setEnabled(true);
 		userMorio.setEmail("morio.fulani@example.com");
 		
-		repository.save(userMorio);
+		repo.save(userMorio);
 	}
 	
 	@Test
 	public void testUpdateUserRoles() {
-		User userCate= repository.findById(2).get();
+		User userCate= repo.findById(2).get();
 		Role roleSalesPerson= new Role(3);
 		Role roleEditor= new Role(4);
 		
 		userCate.getRoles().remove(roleEditor);
 		userCate.addRole(roleSalesPerson);
 		
-		repository.save(userCate);
+		repo.save(userCate);
 	}
 	
 	@Test
 	public void testDeleteUser() {
 		Integer userId = 1;
-		repository.deleteById(userId);
+		repo.deleteById(userId);
 	}
 	
 	@Test
 	public void testGetUserByEmail() {
 		String email = "dc65963HD@xys.cmm"; //No such email exists in database.
-		User user = repository.getUserByEmail(email);
+		User user = repo.getUserByEmail(email);
 		
 		assertThat(user).isNotNull(); //The test MUST fail since there is no user with the above email
+	}
+	
+	@Test
+	public void testCountById() {
+		Integer id = 5; //Use ID that does NOT exist in database
+		Long countById = repo.countById(id);
+		
+		assertThat(countById).isNotNull().isGreaterThan(0);
+	}
+	
+	@Test
+	public void testDisableUser() {
+		Integer id = 1;
+		repo.updateEnabledStatus(id, false);
+	}
+	
+	@Test
+	public void testEnableUser() {
+		Integer id = 1;
+		repo.updateEnabledStatus(id, true);
 	}
 }

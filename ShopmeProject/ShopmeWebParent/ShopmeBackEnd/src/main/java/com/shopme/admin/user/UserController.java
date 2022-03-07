@@ -75,4 +75,34 @@ public class UserController {
 			return "redirect:/users";
 		}
 	}
+	
+	@GetMapping("/users/delete/{id}")
+	public String deleteUser(
+			@PathVariable("id") Integer id,
+			Model model,
+			RedirectAttributes redirectAttributes
+	) {
+		try {
+			service.delete(id); //Delete user from database
+			redirectAttributes.addFlashAttribute("message", "User with ID: " + id + " has been deleted successfully!");
+		} catch (UserNotFoundException e) {
+			redirectAttributes.addFlashAttribute("message", e.getMessage());
+		}
+		return "redirect:/users";
+	}
+	
+	@GetMapping("/users/{id}/enabled/{status}")
+	public String updateUserEnabledStatus(
+		@PathVariable("id") Integer id,
+		@PathVariable("status") boolean enabled,
+		RedirectAttributes redirectAttributes
+	) {
+		service.updateUserEnabledStatus(id, enabled);
+		String status = enabled ? "Enabled" : "Disabled";
+		String message = "User with id " + id + " has been " + status;
+		
+		redirectAttributes.addFlashAttribute("message", message);
+		return "redirect:/users";
+	}
+	
 }

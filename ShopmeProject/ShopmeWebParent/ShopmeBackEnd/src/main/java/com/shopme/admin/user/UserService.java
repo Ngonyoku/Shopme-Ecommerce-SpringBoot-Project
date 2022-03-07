@@ -7,11 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.shopme.common.entity.Role;
 import com.shopme.common.entity.User;
 
 @Service
+@Transactional
 public class UserService {
 	
 	@Autowired
@@ -79,6 +81,10 @@ public class UserService {
 		}
 		return true;
 	}
+	
+	public void updateUserEnabledStatus(Integer id, boolean enabled) {
+		userRepository.updateEnabledStatus(id, enabled);
+	}
 
 	/*
 	 * Return an instance of user with the id provided
@@ -89,5 +95,13 @@ public class UserService {
 		} catch (NoSuchElementException e) {
 			throw new UserNotFoundException("Could NOT find user with id: " + id);
 		}
+	}
+	
+	public void delete(Integer id) throws UserNotFoundException {
+		Long countById = userRepository.countById(id);
+		if (countById == null || countById == 0) {
+			throw new UserNotFoundException("Could NOT find user with id: " + id);
+		}
+		userRepository.deleteById(id);
 	}
 }
