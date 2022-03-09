@@ -39,7 +39,7 @@ public class UserService {
 	/*
 	 * Save User Data to the database
 	 * */
-	public void save(User user) {
+	public User save(User user) {
 		boolean isUpdatingUser = (user.getId() != null); //True if its in Updating Mode
 		
 		if	(isUpdatingUser) {
@@ -54,7 +54,7 @@ public class UserService {
 			encodePasword(user);
 		}
 
-		userRepository.save(user);
+		return userRepository.save(user);
 	}
 	
 	public void encodePasword(User user) {
